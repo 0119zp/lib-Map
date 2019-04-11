@@ -1,9 +1,13 @@
-package zp.com.locationlib;
+package zp.com.baidulocation.bean;
 
-public class Location {
+/**
+ * @author zpan
+ * @date 2019/03/18
+ */
+public class LocationBean {
 
-    public String lat;
-    public String lng;
+    private String lat;
+    private String lng;
 
     public String getLat() {
         return lat;
