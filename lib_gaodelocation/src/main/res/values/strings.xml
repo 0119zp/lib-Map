@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">lib_gaodelocation</string>
+    <string name="map_gaode_location_fail_order">使用 GaodeLocationListener 之前需要调用 setLocationCallback</string>
+    <string name="map_gaode_location_fail_null">定位失败，AMapLocation对象为null</string>
+    <string name="map_gaode_location_error_code_1">请对定位传递的参数进行非空判断</string>
+    <string name="map_gaode_location_error_code_7">KEY鉴权失败</string>
+    <string name="map_gaode_location_error_code_12">请在设备的设置中开启app的定位权限</string>
+</resources>
