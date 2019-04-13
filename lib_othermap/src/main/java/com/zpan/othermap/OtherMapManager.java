@@ -5,12 +5,12 @@ import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
 import android.widget.Toast;
 
-import com.zpan.othermap.bean.NavParamEntity;
+import com.zpan.othermap.bean.StartAndEndInfo;
 import com.zpan.othermap.operator.BaiduMapOperator;
 import com.zpan.othermap.operator.GaodeMapOperator;
 import com.zpan.othermap.operator.GoogleMapOperator;
 import com.zpan.othermap.operator.BaseMapOperator;
-import com.zpan.othermap.utils.HftBottomSheetUtil;
+import com.zpan.othermap.utils.BottomSheetUtil;
 import com.zpan.othermap.utils.OtherMapUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author zpan
  */
-public class ThirdPartyMapManager {
+public class OtherMapManager {
 
     private Activity mActivity;
     private static List<String> sMapList = new ArrayList<>();
@@ -35,13 +35,13 @@ public class ThirdPartyMapManager {
         sMapList.add(GoogleMapOperator.PACKAGE_NAME);
     }
 
-    private NavParamEntity mEntity;
+    private StartAndEndInfo mEntity;
     private BottomSheetDialog bottomSheetDialog;
 
     /**
      * @param entity 传入火星坐标（GCJ-02）坐标系
      */
-    public ThirdPartyMapManager(Activity activity, NavParamEntity entity) {
+    public OtherMapManager(Activity activity, StartAndEndInfo entity) {
         mActivity = activity;
         mEntity = entity;
         init();
@@ -73,7 +73,7 @@ public class ThirdPartyMapManager {
                     }
                 });
             }
-            bottomSheetDialog = HftBottomSheetUtil.createTextBottomSheetDialog(mActivity, map);
+            bottomSheetDialog = BottomSheetUtil.createTextBottomSheetDialog(mActivity, map);
         }
     }
 

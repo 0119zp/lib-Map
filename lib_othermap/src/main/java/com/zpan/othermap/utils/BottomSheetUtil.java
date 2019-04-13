@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * @author zpan
  */
-public class HftBottomSheetUtil {
+public class BottomSheetUtil {
 
     public static BottomSheetDialog createTextBottomSheetDialog(Context context, HashMap<String, View.OnClickListener> hashMap) {
 

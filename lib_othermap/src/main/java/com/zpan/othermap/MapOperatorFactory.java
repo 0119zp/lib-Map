@@ -7,9 +7,9 @@ import com.zpan.othermap.operator.BaseMapOperator;
  *
  * @author zpan
  */
-public class MapOperatorFactory {
+class MapOperatorFactory {
 
-    public static <T extends BaseMapOperator> T getOperator(Class<T> clazz) {
+    static <T extends BaseMapOperator> T getOperator(Class<T> clazz) {
         BaseMapOperator operator = null;
         try {
             operator = (BaseMapOperator) Class.forName(clazz.getName()).newInstance();

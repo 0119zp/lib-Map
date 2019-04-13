@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import com.zpan.othermap.utils.GPSUtil;
-import com.zpan.othermap.bean.NavParamEntity;
+import com.zpan.othermap.bean.StartAndEndInfo;
+import com.zpan.othermap.utils.GpsUtil;
 
 /**
  * 调用百度地图实现类
@@ -15,15 +15,13 @@ import com.zpan.othermap.bean.NavParamEntity;
  */
 public class BaiduMapOperator extends BaseMapOperator {
 
-    /**
-     * 百度地图包名
-     */
+    /** 百度地图包名 */
     public static final String PACKAGE_NAME = "com.baidu.BaiduMap";
-
+    /** 百度地图名称 */
     public static final String CHINA_NAME = "百度地图";
 
     @Override
-    void location(Activity activity) {
+    public void location(Activity activity) {
         try {
             Intent i = new Intent();
             i.setData(Uri.parse("baidumap://map"));
@@ -35,20 +33,20 @@ public class BaiduMapOperator extends BaseMapOperator {
     }
 
     @Override
-    public void navigation(Activity activity, NavParamEntity entity) {
-        if (entity == null || entity.getTo() == null) {
+    public void navigation(Activity activity, StartAndEndInfo entity) {
+        if (entity == null || entity.getEndLocation() == null) {
             throw new RuntimeException("参数错误！缺少必要参数,是否传入目标点坐标?");
         }
-        double[] d = GPSUtil.gcj02_To_Bd09(entity.getTo().getLatitude(), entity.getTo().getLongitude());
-        entity.getTo().setLatitude(d[0]);
-        entity.getTo().setLongitude(d[1]);
-        if (entity.getFrom() != null) {
-            double[] d2 = GPSUtil.gcj02_To_Bd09(entity.getFrom().getLatitude(), entity.getFrom().getLongitude());
-            entity.getFrom().setLatitude(d2[0]);
-            entity.getFrom().setLongitude(d2[1]);
+        double[] d = GpsUtil.gcj02_To_Bd09(entity.getEndLocation().getLatitude(), entity.getEndLocation().getLongitude());
+        entity.getEndLocation().setLatitude(d[0]);
+        entity.getEndLocation().setLongitude(d[1]);
+        if (entity.getStartLocation() != null) {
+            double[] d2 = GpsUtil.gcj02_To_Bd09(entity.getStartLocation().getLatitude(), entity.getStartLocation().getLongitude());
+            entity.getStartLocation().setLatitude(d2[0]);
+            entity.getStartLocation().setLongitude(d2[1]);
         }
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getNavigationUrl(entity)));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getStartBaiduMapUrl(entity)));
             intent.setPackage(PACKAGE_NAME);
             activity.startActivity(intent);
         } catch (Exception e) {
@@ -57,21 +55,27 @@ public class BaiduMapOperator extends BaseMapOperator {
         }
     }
 
-    private String getNavigationUrl(NavParamEntity entity) {
+    /**
+     * 拼接启动百度地图的 url
+     *
+     * @param entity 起点终点信息数据
+     * @return url
+     */
+    private String getStartBaiduMapUrl(StartAndEndInfo entity) {
         StringBuilder sb = new StringBuilder("baidumap://map/direction?");
-        if (entity.getFrom() != null) {
+        if (entity.getStartLocation() != null) {
             sb.append("origin=name:我的位置|latlng:")
-                .append(entity.getFrom().getLatitude())
+                .append(entity.getStartLocation().getLatitude())
                 .append(",")
-                .append(entity.getFrom().getLongitude())
+                .append(entity.getStartLocation().getLongitude())
                 .append("&");
         }
         sb.append("destination=name:")
-            .append(entity.getToName())
+            .append(entity.getEndName())
             .append("|latlng:")
-            .append(entity.getTo().getLatitude())
+            .append(entity.getEndLocation().getLatitude())
             .append(",")
-            .append(entity.getTo().getLongitude());
+            .append(entity.getEndLocation().getLongitude());
         Log.e("dev", sb.toString());
         return sb.toString();
     }

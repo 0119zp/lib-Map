@@ -1,13 +1,16 @@
 package com.zpan.othermap.utils;
 
-public class GPSUtil {
+/**
+ * @author zpan
+ */
+public class GpsUtil {
 
-    public static double pi = 3.1415926535897932384626;
-    public static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-    public static double a = 6378245.0;
-    public static double ee = 0.00669342162296594323;
+    private static double pi = 3.1415926535897932384626;
+    private static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+    private static double a = 6378245.0;
+    private static double ee = 0.00669342162296594323;
 
-    public static double transformLat(double x, double y) {
+    private static double transformLat(double x, double y) {
         double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
         ret += (20.0 * Math.sin(6.0 * x * pi) + 20.0 * Math.sin(2.0 * x * pi)) * 2.0 / 3.0;
         ret += (20.0 * Math.sin(y * pi) + 40.0 * Math.sin(y / 3.0 * pi)) * 2.0 / 3.0;
@@ -15,7 +18,7 @@ public class GPSUtil {
         return ret;
     }
 
-    public static double transformLon(double x, double y) {
+    private static double transformLon(double x, double y) {
         double ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
         ret += (20.0 * Math.sin(6.0 * x * pi) + 20.0 * Math.sin(2.0 * x * pi)) * 2.0 / 3.0;
         ret += (20.0 * Math.sin(x * pi) + 40.0 * Math.sin(x / 3.0 * pi)) * 2.0 / 3.0;
@@ -23,7 +26,7 @@ public class GPSUtil {
         return ret;
     }
 
-    public static double[] transform(double lat, double lon) {
+    private static double[] transform(double lat, double lon) {
         if (outOfChina(lat, lon)) {
             return new double[] { lat, lon };
         }
@@ -40,7 +43,7 @@ public class GPSUtil {
         return new double[] { mgLat, mgLon };
     }
 
-    public static boolean outOfChina(double lat, double lon) {
+    private static boolean outOfChina(double lat, double lon) {
         if (lon < 72.004 || lon > 137.8347) {
             return true;
         }
@@ -53,7 +56,7 @@ public class GPSUtil {
     /**
      * 84 to 火星坐标系 (GCJ-02) World Geodetic System ==> Mars Geodetic System
      */
-    public static double[] gps84_To_Gcj02(double lat, double lon) {
+    private static double[] gps84_To_Gcj02(double lat, double lon) {
         if (outOfChina(lat, lon)) {
             return new double[] { lat, lon };
         }
@@ -73,7 +76,7 @@ public class GPSUtil {
     /**
      * * 火星坐标系 (GCJ-02) to 84 * * @param lon * @param lat * @return
      */
-    public static double[] gcj02_To_Gps84(double lat, double lon) {
+    private static double[] gcj02_To_Gps84(double lat, double lon) {
         double[] gps = transform(lat, lon);
         double lontitude = lon * 2 - gps[1];
         double latitude = lat * 2 - gps[0];

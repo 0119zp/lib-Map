@@ -1,11 +1,16 @@
 package com.zpan.othermap.bean;
 
+/**
+ * 经纬度
+ *
+ * @author zpan
+ */
 public class Location {
 
     /** 经度 */
-    double longitude;
+    private double longitude;
     /** 纬度 */
-    double latitude;
+    private double latitude;
 
     /**
      * @param longitude 经度
