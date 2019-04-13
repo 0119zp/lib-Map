@@ -1,1 +1,1 @@
-include ':app', ':lib-baidulocation', ':Mapview', ':lib_gaodelocation'
+include ':app', ':lib-baidulocation', ':Mapview', ':lib_gaodelocation', ':lib_othermap'
