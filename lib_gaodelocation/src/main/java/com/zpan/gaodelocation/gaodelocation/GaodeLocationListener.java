@@ -63,16 +63,23 @@ public class GaodeLocationListener implements AMapLocationListener {
         if (errorCode == GAODE_LOCATION_ERROR_CODE_0) {
             LocationSuccessBean bean = new LocationSuccessBean();
             bean.setLocationTime(String.valueOf(aMapLocation.getTime()));
-            bean.setLocationAltitude(aMapLocation.getAltitude());
-            bean.setLocationLat(aMapLocation.getLatitude());
-            bean.setLocationLon(aMapLocation.getLongitude());
-            bean.setLocationCity(aMapLocation.getCity());
+            bean.setLocationTime(String.valueOf(aMapLocation.getTime()));
+            bean.setLocationType(aMapLocation.getLocationType());
+            bean.setLocationLatitude(aMapLocation.getLatitude());
+            bean.setLocationLongitude(aMapLocation.getLongitude());
+            bean.setCity(aMapLocation.getCity());
+            bean.setCountry(aMapLocation.getCountry());
+            bean.setProvince(aMapLocation.getProvince());
+            bean.setCityCode(aMapLocation.getCityCode());
+            bean.setDistrict(aMapLocation.getDistrict());
+            bean.setAdCode(aMapLocation.getAdCode());
             mLocationCallback.success(bean);
             mLocationCallback.complete();
         } else {
             LocationFailedBean failedBean = new LocationFailedBean();
-            failedBean.setLocType(aMapLocation.getLocationType());
-            failedBean.setLocTypeDes(aMapLocation.getDescription());
+            failedBean.setErrorInfo(aMapLocation.getErrorInfo());
+            failedBean.setErrorDetail(aMapLocation.getLocationDetail());
+            failedBean.setErrorCode(errorCode);
             mLocationCallback.failed(failedBean);
             mLocationCallback.complete();
         }

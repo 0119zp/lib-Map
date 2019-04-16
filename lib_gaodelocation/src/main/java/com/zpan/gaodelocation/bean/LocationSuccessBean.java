@@ -6,11 +6,34 @@ package com.zpan.gaodelocation.bean;
  */
 public class LocationSuccessBean {
 
+    /** 定位类型 */
+    private int locationType;
+    /** 定位时间 */
     private String locationTime;
-    private double locationLat;
-    private double locationLon;
-    private double locationAltitude;
-    private String locationCity;
+    /** 纬度 */
+    private double locationLatitude;
+    /** 经度 */
+    private double locationLongitude;
+    /** 国家 */
+    private String country;
+    /** 省 */
+    private String province;
+    /** 市 */
+    private String city;
+    /** 城市编码 */
+    private String cityCode;
+    /** 区 */
+    private String district;
+    /** 区域码 */
+    private String adCode;
+
+    public int getLocationType() {
+        return locationType;
+    }
+
+    public void setLocationType(int locationType) {
+        this.locationType = locationType;
+    }
 
     public String getLocationTime() {
         return locationTime;
@@ -20,35 +43,67 @@ public class LocationSuccessBean {
         this.locationTime = locationTime;
     }
 
-    public double getLocationLat() {
-        return locationLat;
+    public double getLocationLatitude() {
+        return locationLatitude;
     }
 
-    public void setLocationLat(double locationLat) {
-        this.locationLat = locationLat;
+    public void setLocationLatitude(double locationLatitude) {
+        this.locationLatitude = locationLatitude;
     }
 
-    public double getLocationLon() {
-        return locationLon;
+    public double getLocationLongitude() {
+        return locationLongitude;
     }
 
-    public void setLocationLon(double locationLon) {
-        this.locationLon = locationLon;
+    public void setLocationLongitude(double locationLongitude) {
+        this.locationLongitude = locationLongitude;
     }
 
-    public double getLocationAltitude() {
-        return locationAltitude;
+    public String getCountry() {
+        return country;
     }
 
-    public void setLocationAltitude(double locationAltitude) {
-        this.locationAltitude = locationAltitude;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public String getLocationCity() {
-        return locationCity;
+    public String getProvince() {
+        return province;
     }
 
-    public void setLocationCity(String locationCity) {
-        this.locationCity = locationCity;
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getAdCode() {
+        return adCode;
+    }
+
+    public void setAdCode(String adCode) {
+        this.adCode = adCode;
     }
 }

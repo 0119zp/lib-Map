@@ -6,22 +6,34 @@ package com.zpan.gaodelocation.bean;
  */
 public class LocationFailedBean {
 
-    private int locType;
-    private String locTypeDes;
+    /** 错误码 */
+    private int errorCode;
+    /** 错误信息 */
+    private String errorInfo;
+    /** 错误描述 */
+    private String errorDetail;
 
-    public int getLocType() {
-        return locType;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public void setLocType(int locType) {
-        this.locType = locType;
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public String getLocTypeDes() {
-        return locTypeDes;
+    public String getErrorInfo() {
+        return errorInfo;
     }
 
-    public void setLocTypeDes(String locTypeDes) {
-        this.locTypeDes = locTypeDes;
+    public void setErrorInfo(String errorInfo) {
+        this.errorInfo = errorInfo;
+    }
+
+    public String getErrorDetail() {
+        return errorDetail;
+    }
+
+    public void setErrorDetail(String errorDetail) {
+        this.errorDetail = errorDetail;
     }
 }
