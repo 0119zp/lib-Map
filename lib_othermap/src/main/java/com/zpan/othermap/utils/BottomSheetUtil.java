@@ -5,12 +5,12 @@ import android.support.design.widget.BottomSheetDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zpan.othermap.R;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -25,11 +25,9 @@ public class BottomSheetUtil {
         LinearLayout llContent = view.findViewById(R.id.ll_bottom_sheet);
 
         // 地图按钮
-        Iterator iterator = hashMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, View.OnClickListener> entry = (Map.Entry) iterator.next();
-            String key = entry.getKey();
-            final View.OnClickListener listener = entry.getValue();
+        for (Map.Entry<String, View.OnClickListener> stringOnClickListenerEntry : hashMap.entrySet()) {
+            String key = stringOnClickListenerEntry.getKey();
+            final View.OnClickListener listener = stringOnClickListenerEntry.getValue();
             if (!TextUtils.isEmpty(key)) {
                 View itemView = LayoutInflater.from(context).inflate(R.layout.dialog_bottom_sheet_item_text, null);
                 TextView tvItem = itemView.findViewById(R.id.tv_bottom_sheet_item);
@@ -63,6 +61,13 @@ public class BottomSheetUtil {
         llContent.addView(itemCancelView);
 
         dialog.setContentView(view);
+        try {
+            // hack bg color of the BottomSheetDialog
+            ViewGroup parent = (ViewGroup) view.getParent();
+            parent.setBackgroundResource(android.R.color.transparent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return dialog;
     }
 }
