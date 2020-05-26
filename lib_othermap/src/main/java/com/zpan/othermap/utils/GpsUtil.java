@@ -1,6 +1,14 @@
 package com.zpan.othermap.utils;
 
 /**
+ * WGS84 ：地理坐标系统，Google Earth和中国外的Google Map使用，另外，目前基本上所有定位空间位置的设备都使用这种坐标系统，例如手机的GPS系统。
+ * GCJ-02：投影坐标系统，也就是我们平常所说的火星坐标系，Google Map中国、高德和腾讯好像使用，这个是中国自己在WGS84基础上加密而成，目的显而易见。
+ * BD09：投影坐标系统，百度地图使用，在GCJ-02基础上二次加密而成。
+ *
+ * 百度地图API	百度坐标
+ * 腾讯搜搜地图API	火星坐标
+ * 高德MapABC地图API	火星坐标
+ *
  * @author zpan
  */
 public class GpsUtil {
