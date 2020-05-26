@@ -10,6 +10,7 @@ import com.zpan.othermap.operator.BaiduMapOperator;
 import com.zpan.othermap.operator.GaodeMapOperator;
 import com.zpan.othermap.operator.GoogleMapOperator;
 import com.zpan.othermap.operator.BaseMapOperator;
+import com.zpan.othermap.operator.TencentOperator;
 import com.zpan.othermap.utils.BottomSheetUtil;
 import com.zpan.othermap.utils.OtherMapUtil;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class OtherMapManager {
         sMapList.add(BaiduMapOperator.PACKAGE_NAME);
         sMapList.add(GaodeMapOperator.PACKAGE_NAME);
         sMapList.add(GoogleMapOperator.PACKAGE_NAME);
+        sMapList.add(TencentOperator.PACKAGE_NAME);
     }
 
     private StartAndEndInfo mEntity;

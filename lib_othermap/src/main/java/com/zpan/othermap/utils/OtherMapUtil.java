@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.zpan.othermap.operator.BaiduMapOperator;
 import com.zpan.othermap.operator.GaodeMapOperator;
 import com.zpan.othermap.operator.GoogleMapOperator;
+import com.zpan.othermap.operator.TencentOperator;
 import java.util.List;
 
 /**
@@ -25,11 +26,9 @@ public class OtherMapUtil {
      */
     public static boolean checkInstalled(Context context, String packageName) {
         List<PackageInfo> packageInfos = context.getPackageManager().getInstalledPackages(0);
-        if (packageInfos != null) {
-            for (PackageInfo packageInfo : packageInfos) {
-                if (packageInfo.packageName.equals(packageName)) {
-                    return true;
-                }
+        for (PackageInfo packageInfo : packageInfos) {
+            if (packageInfo.packageName.equals(packageName)) {
+                return true;
             }
         }
         return false;
@@ -44,12 +43,21 @@ public class OtherMapUtil {
     public static String getMapName(String packageName) {
         String name = "";
         if (!TextUtils.isEmpty(packageName)) {
-            if (BaiduMapOperator.PACKAGE_NAME.equals(packageName)) {
-                name = BaiduMapOperator.CHINA_NAME;
-            } else if (GaodeMapOperator.PACKAGE_NAME.equals(packageName)) {
-                name = GaodeMapOperator.CHINA_NAME;
-            } else if (GoogleMapOperator.PACKAGE_NAME.equals(packageName)) {
-                name = GoogleMapOperator.CHINA_NAME;
+            switch (packageName) {
+                case BaiduMapOperator.PACKAGE_NAME:
+                    name = BaiduMapOperator.CHINA_NAME;
+                    break;
+                case GaodeMapOperator.PACKAGE_NAME:
+                    name = GaodeMapOperator.CHINA_NAME;
+                    break;
+                case GoogleMapOperator.PACKAGE_NAME:
+                    name = GoogleMapOperator.CHINA_NAME;
+                    break;
+                case TencentOperator.PACKAGE_NAME:
+                    name = TencentOperator.CHINA_NAME;
+                    break;
+                default:
+                    break;
             }
         }
         return name;
@@ -63,12 +71,17 @@ public class OtherMapUtil {
      */
     public static Class getMapClass(String packageName) {
         if (!TextUtils.isEmpty(packageName)) {
-            if (BaiduMapOperator.PACKAGE_NAME.equals(packageName)) {
-                return BaiduMapOperator.class;
-            } else if (GaodeMapOperator.PACKAGE_NAME.equals(packageName)) {
-                return GaodeMapOperator.class;
-            } else if (GoogleMapOperator.PACKAGE_NAME.equals(packageName)) {
-                return GoogleMapOperator.class;
+            switch (packageName) {
+                case BaiduMapOperator.PACKAGE_NAME:
+                    return BaiduMapOperator.class;
+                case GaodeMapOperator.PACKAGE_NAME:
+                    return GaodeMapOperator.class;
+                case GoogleMapOperator.PACKAGE_NAME:
+                    return GoogleMapOperator.class;
+                case TencentOperator.PACKAGE_NAME:
+                    return TencentOperator.class;
+                default:
+                    return null;
             }
         }
         return null;

@@ -72,7 +72,6 @@ public class GaodeMapOperator extends BaseMapOperator {
         // 导航方式(0 速度快; 1 费用少; 2 路程短; 3 不走高速；4 躲避拥堵；5 不走高速且避免收费；
         // 6 不走高速且躲避拥堵；7 躲避收费和拥堵；8 不走高速躲避收费和拥堵)
         sb.append("style=2");
-        Log.e("dev", sb.toString());
         return sb.toString();
     }
 
