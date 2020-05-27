@@ -84,7 +84,7 @@ public class GpsUtil {
     /**
      * * 火星坐标系 (GCJ-02) to 84 * * @param lon * @param lat * @return
      */
-    private static double[] gcj02_To_Gps84(double lat, double lon) {
+    public static double[] gcj02_To_Gps84(double lat, double lon) {
         double[] gps = transform(lat, lon);
         double lontitude = lon * 2 - gps[1];
         double latitude = lat * 2 - gps[0];

@@ -37,6 +37,7 @@ public class BaiduMapOperator extends BaseMapOperator {
         if (entity == null || entity.getEndLocation() == null) {
             throw new RuntimeException("参数错误！缺少必要参数,是否传入目标点坐标?");
         }
+        // 火星坐标系转成百度坐标系
         double[] d = GpsUtil.gcj02_To_Bd09(entity.getEndLocation().getLatitude(), entity.getEndLocation().getLongitude());
         entity.getEndLocation().setLatitude(d[0]);
         entity.getEndLocation().setLongitude(d[1]);
