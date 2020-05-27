@@ -1,8 +1,8 @@
 package zp.com.baidumapdemo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
 import com.zpan.othermap.bean.StartAndEndInfo;
 import com.zpan.othermap.utils.GpsUtil;
 import com.zpan.othermap.bean.Location;

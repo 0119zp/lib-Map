@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_select_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_bottom_select_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_shape_select_map"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#3F51B5"
+        android:textSize="18sp" />
+
+</LinearLayout>

@@ -1,17 +1,15 @@
 package com.zpan.othermap;
 
-import android.app.Activity;
-import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
 import android.widget.Toast;
-
+import androidx.fragment.app.FragmentActivity;
 import com.zpan.othermap.bean.StartAndEndInfo;
 import com.zpan.othermap.operator.BaiduMapOperator;
+import com.zpan.othermap.operator.BaseMapOperator;
 import com.zpan.othermap.operator.GaodeMapOperator;
 import com.zpan.othermap.operator.GoogleMapOperator;
-import com.zpan.othermap.operator.BaseMapOperator;
 import com.zpan.othermap.operator.TencentOperator;
-import com.zpan.othermap.utils.BottomSheetUtil;
+import com.zpan.othermap.utils.BottomSelectDialog;
 import com.zpan.othermap.utils.OtherMapUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +23,7 @@ import java.util.List;
  */
 public class OtherMapManager {
 
-    private Activity mActivity;
+    private FragmentActivity mActivity;
     private static List<String> sMapList = new ArrayList<>();
     private List<String> sheetItemList;
     private boolean needShow = true;
@@ -38,12 +36,12 @@ public class OtherMapManager {
     }
 
     private StartAndEndInfo mEntity;
-    private BottomSheetDialog bottomSheetDialog;
+    private BottomSelectDialog selectDialog;
 
     /**
      * @param entity 传入火星坐标（GCJ-02）坐标系
      */
-    public OtherMapManager(Activity activity, StartAndEndInfo entity) {
+    public OtherMapManager(FragmentActivity activity, StartAndEndInfo entity) {
         mActivity = activity;
         mEntity = entity;
         init();
@@ -75,13 +73,15 @@ public class OtherMapManager {
                     }
                 });
             }
-            bottomSheetDialog = BottomSheetUtil.createTextBottomSheetDialog(mActivity, map);
+
+            selectDialog = new BottomSelectDialog();
+            selectDialog.setMapList(map);
         }
     }
 
     public void navigation() {
         if (needShow) {
-            bottomSheetDialog.show();
+            selectDialog.show(mActivity.getSupportFragmentManager(), "");
         } else {
             if (sheetItemList.size() == 1) {
                 String p = sMapList.get(0);
